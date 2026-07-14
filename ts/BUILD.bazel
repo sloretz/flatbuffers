@@ -67,13 +67,6 @@ npm_package(
     visibility = ["//visibility:public"],
 )
 
-# rules_js v3 defaults npm_package_target_name to "pkg" for workspace packages.
-alias(
-    name = "pkg",
-    actual = ":flatbuffers",
-    visibility = ["//visibility:public"],
-)
-
 sh_binary(
     name = "compile_flat_file",
     srcs = ["compile_flat_file.sh"],
