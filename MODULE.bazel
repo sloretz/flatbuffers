@@ -61,7 +61,9 @@ bazel_dep(
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
 npm.npm_translate_lock(
     name = "flatbuffers_npm",
+    npmrc = "//:.npmrc",
     pnpm_lock = "//ts:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
 )
 use_repo(npm, "flatbuffers_npm")
 
