@@ -11,15 +11,15 @@ bazel_dep(
 )
 bazel_dep(
     name = "aspect_rules_esbuild",
-    version = "0.21.0",
+    version = "0.26.0",
 )
 bazel_dep(
     name = "aspect_rules_js",
-    version = "2.3.8",
+    version = "3.0.3",
 )
 bazel_dep(
     name = "aspect_rules_ts",
-    version = "3.6.0",
+    version = "3.9.1",
 )
 bazel_dep(
     name = "grpc",
@@ -36,7 +36,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_go",
-    version = "0.50.1",
+    version = "0.61.1",
     repo_name = "io_bazel_rules_go",
 )
 bazel_dep(

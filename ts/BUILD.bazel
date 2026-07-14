@@ -49,6 +49,8 @@ ts_project(
             ],
             "types": ["node"],
             "strict": True,
+            "ignoreDeprecations": "6.0",
+            "skipLibCheck": True,
         },
     },
     visibility = ["//visibility:public"],
@@ -62,6 +64,12 @@ npm_package(
     srcs = [":flatbuffers_ts"],
     include_external_repositories = ["*"],
     package = "flatbuffers",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "pkg",
+    actual = ":flatbuffers",
     visibility = ["//visibility:public"],
 )
 
