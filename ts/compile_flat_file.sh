@@ -17,6 +17,9 @@ source "${RUNFILES_DIR:-/dev/null}/$f" 2>/dev/null || \
 set -eu
 runfiles_export_envvars
 FLATC=$(rlocation com_github_google_flatbuffers/flatc)
-TS_FILE=$(${FLATC}  $@  | grep  "Entry point.*generated" | grep -o "bazel-out.*ts")
+FBS_FILE="${!#}"
+SCHEMA_BASE=$(basename "${FBS_FILE}" .fbs)
+${FLATC} "$@"
+TS_FILE=$(${FLATC} --file-names-only "$@" 2>/dev/null | grep "/${SCHEMA_BASE}\(_[a-zA-Z0-9_-]*\)\?\.ts$" | head -n 1)
 export PATH="$(rlocation nodejs_linux_amd64/bin/nodejs/bin):${PATH}"
-${ESBUILD_BIN} ${TS_FILE} --format=cjs --bundle --outfile="${OUTPUT_FILE}"  --external:flatbuffers --log-level=warning
+${ESBUILD_BIN} "${TS_FILE}" --format=cjs --bundle --outfile="${OUTPUT_FILE}"  --external:flatbuffers --log-level=warning
